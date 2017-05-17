@@ -70,13 +70,13 @@ public class DiamondTest {
 
 	private static class Diamond {
 
-		private final char other;
+		private final char givenChar;
 		private final int middle;
 		private final int diamondLength;
 
-		public Diamond(char aOther) {
-			other = aOther;
-			middle = (other - 'A');
+		public Diamond(char aGivenChar) {
+			givenChar = aGivenChar;
+			middle = (givenChar - 'A');
 			diamondLength = 2 * middle + 1;
 		}
 
@@ -84,33 +84,33 @@ public class DiamondTest {
 			final String[][] diamond =  new String[diamondLength][diamondLength];
 
 			for (int row = 0; row <= middle; row++) {
-				String charToPrint = evaluateCharacterToPrint(row);
+				String charToPrint = evaluateCharacterFor(row);
 
-				assignTopHalfRightHandSided(diamond, row, charToPrint);
-				assignTopHalfLeftHandSided(diamond, row, charToPrint);
-				assignBottomHalfRightHandSided(diamond, row, charToPrint);
-				assignBottomHalfLeftHandSided(diamond, row, charToPrint);
+				assignTopRightHalf(diamond, row, charToPrint);
+				assignTopLeftHalf(diamond, row, charToPrint);
+				assignBottomRightHalf(diamond, row, charToPrint);
+				assignBottomLeftHalf(diamond, row, charToPrint);
 			}
 			return diamond;
 		}
 
-		private String evaluateCharacterToPrint(int row) {
+		private String evaluateCharacterFor(int row) {
 			return String.valueOf((char) ('A' + row));
 		}
 
-		private void assignTopHalfRightHandSided(String[][] diamond, int row, String charToPrint) {
+		private void assignTopRightHalf(String[][] diamond, int row, String charToPrint) {
 			diamond[row][middle + row] = charToPrint;
 		}
 
-		private void assignTopHalfLeftHandSided(String[][] diamond, int row, String charToPrint) {
+		private void assignTopLeftHalf(String[][] diamond, int row, String charToPrint) {
 			diamond[row][middle - row] = charToPrint;
 		}
 
-		private void assignBottomHalfRightHandSided(String[][] diamond, int row, String charToPrint) {
+		private void assignBottomRightHalf(String[][] diamond, int row, String charToPrint) {
 			diamond[2 * middle - row][middle + row] = charToPrint;
 		}
 
-		private void assignBottomHalfLeftHandSided(String[][] diamond, int row, String charToPrint) {
+		private void assignBottomLeftHalf(String[][] diamond, int row, String charToPrint) {
 			diamond[2 * middle - row][middle - row] = charToPrint;
 		}
 	}
